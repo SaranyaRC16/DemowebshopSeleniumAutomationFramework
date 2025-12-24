@@ -1,0 +1,28 @@
+<suite name="demoWebShop Test Automation" verbose="5" thread-count="4" parallel="tests">
+	<test name="Login Page Tests">
+	<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="tricentis.demowebshopAutomation.tests.HomePageTest" />
+		</classes>
+	</test>
+	<test name="Account Page Tests">
+	<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="tricentis.demowebshopAutomation.tests.AccountPageTest" />
+		</classes>
+	</test>
+	<test name="Product Info Page Tests">
+	<parameter name="browser" value="edge" />
+		<classes>
+			<class
+				name="tricentis.demowebshopAutomation.tests.ProductInfoPageTest" />
+		</classes>
+	</test>
+	<test name="Product Search Results Page Tests">
+	<parameter name="browser" value="edge" />
+		<classes>
+			<class
+				name="tricentis.demowebshopAutomation.tests.ProductSearchResultsPageTest" />
+		</classes>
+	</test>
+</suite>
