@@ -36,9 +36,9 @@ public class BaseTest {
 	
 	private static final Logger log = LogManager.getLogger(BaseTest.class);
 	
-    @Parameters({"browser"})
+    @Parameters({"browser","browserversion","testname"})
     @BeforeTest
-	public void setup(@Optional String browserName) {
+	public void setup(@Optional String browserName, @Optional String browserVersion, @Optional String testName) {
 		df = new DriverFactory();
 		prop = df.initProp();
 		log.info("Properties are" +prop);
@@ -46,6 +46,8 @@ public class BaseTest {
 		ChainTestListener.log("Borwser Launched is "+browserName);	
 		  if(!(browserName==null)) {
 			  prop.setProperty("browser", browserName);
+			  prop.setProperty("browserversion", browserVersion);
+			  prop.setProperty("testname", testName);
 		  }
 		driver = df.launchApplication(prop);
 		homePage = new HomePage(driver);

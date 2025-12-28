@@ -9,18 +9,24 @@
 			</listeners>
 	<test name="Login Page Tests">
 		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="126.0" />
+		<parameter name="testname" value="Login Page Tests" />
 		<classes>
 			<class name="tricentis.demowebshopAutomation.tests.HomePageTest" />
 		</classes>
 	</test>
 	<test name="Account Page Tests">
-		<parameter name="browser" value="chrome" />
+		<parameter name="browser" value="firefox" />
+		<parameter name="browserversion" value="124.0" />
+		<parameter name="testname" value="Account Page Tests" />
 		<classes>
 			<class name="tricentis.demowebshopAutomation.tests.AccountPageTest" />
 		</classes>
 	</test>
 		<test name="Product Info Page Tests">
-	<parameter name="browser" value="chrome" />
+	<parameter name="browser" value="firefox" />
+	<parameter name="browserversion" value="125.0" />
+	<parameter name="testname" value="Product Info Page Tests" />
 		<classes>
 			<class
 				name="tricentis.demowebshopAutomation.tests.ProductInfoPageTest" />
@@ -28,6 +34,8 @@
 	</test>
 	<test name="Product Search Results Page Tests">
 	<parameter name="browser" value="chrome" />
+	<parameter name="browserversion" value="113.0" />
+	<parameter name="testname" value="Product Search Results Page Tests" />
 		<classes>
 			<class
 				name="tricentis.demowebshopAutomation.tests.ProductSearchResultsPageTest" />

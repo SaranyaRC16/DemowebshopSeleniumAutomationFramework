@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
@@ -16,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import tricentis.demowebshop.exceptions.BrowserExceptions;
@@ -37,19 +40,40 @@ public class DriverFactory {
 		//System.out.println("Browser name is " + browser);
 		objManager = new ObjectManager(prop);
 		highlight = prop.getProperty("highlight");
+		Boolean remote = Boolean.parseBoolean(prop.getProperty("remote"));
 
 		switch (browser.toLowerCase().trim()) {
 		case ("chrome"):
+			if(remote) {
+				initRemoteDriver(browser);
+			}
+			else {
 			tlDriver.set(new ChromeDriver(objManager.chromeOptions()));
+			}
 			break;
 		case ("firefox"):
-			tlDriver.set(new FirefoxDriver(objManager.firefoxOptions()));
+			if(remote) {
+				initRemoteDriver(browser);
+			}
+			else {
+				tlDriver.set(new FirefoxDriver(objManager.firefoxOptions()));
+			}			
 			break;
 		case ("edge"):
-			tlDriver.set(new EdgeDriver(objManager.edgeOptions()));
+			if(remote) {
+				initRemoteDriver(browser);
+			}
+			else {
+				tlDriver.set(new EdgeDriver(objManager.edgeOptions()));
+			}			
 			break;
 		case ("safari"):
-			tlDriver.set(new SafariDriver());
+			if(remote) {
+				throw new BrowserExceptions("=====INVALID BROWSER NOT SUPPORTED WITH SELENIUM GRID====="+browser);
+			}
+			else {
+				tlDriver.set(new SafariDriver());
+			}			
 			break;
 		default:
 			log.error("INVALID BROWSER NAME");
@@ -115,6 +139,40 @@ public class DriverFactory {
 		}
 
 		return prop;
+	}
+	
+	private void initRemoteDriver(String browserName) {
+		
+		switch(browserName) {
+		case "chrome":
+		try {
+				tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("hubUrl")),objManager.chromeOptions()));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		break;
+		case "firefox":
+			try {
+					tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("hubUrl")),objManager.firefoxOptions()));
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			break;
+		case "edge":
+			try {
+					tlDriver.set(new RemoteWebDriver(new URL(prop.getProperty("hubUrl")),objManager.edgeOptions()));
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			break;
+		default:
+			throw new BrowserExceptions("======INVALID BROWSER====="+browserName);
+			
+		}
+		
 	}
 	
  /** 
