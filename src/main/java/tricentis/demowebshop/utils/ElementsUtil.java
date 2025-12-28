@@ -54,7 +54,9 @@ public class ElementsUtil {
 
 	@Step("Following value {1} is sent to the Locator: {0}")
 	public void sendKeys(By locator, String value) {
-		goToElement(locator).sendKeys(value);
+		WebElement element = goToElement(locator);
+		element.clear();
+		element.sendKeys(value);
 	}
 
 	@Step("Getting Text from Locator: {0}")

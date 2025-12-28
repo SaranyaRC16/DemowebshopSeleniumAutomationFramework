@@ -19,8 +19,8 @@ public class AccountPage {
 	private ElementsUtil eUtil;
 
 	private static final By categoryHeaders = By.cssSelector("div[class='header-menu'] ul[class='top-menu']>li>a");
-	private static final By searchTextbox = By.cssSelector("input[value='Search store1']");
-	private static final By searchButton = By.xpath("(//input[@value='Search1'])[1]");
+	private static final By searchTextbox = By.cssSelector("input[value='Search store']");
+	private static final By searchButton = By.xpath("(//input[@value='Search'])[1]");
 
 	private final By accountInfo = By.xpath("(//a[@href='/customer/info'])[1]");
 
