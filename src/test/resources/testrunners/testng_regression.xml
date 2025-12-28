@@ -14,7 +14,7 @@
 		</classes>
 	</test>
 	<test name="Account Page Tests">
-		<parameter name="browser" value="firefox" />
+		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="tricentis.demowebshopAutomation.tests.AccountPageTest" />
 		</classes>
