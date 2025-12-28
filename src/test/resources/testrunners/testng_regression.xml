@@ -20,14 +20,14 @@
 		</classes>
 	</test>
 		<test name="Product Info Page Tests">
-	<parameter name="browser" value="edge" />
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class
 				name="tricentis.demowebshopAutomation.tests.ProductInfoPageTest" />
 		</classes>
 	</test>
 	<test name="Product Search Results Page Tests">
-	<parameter name="browser" value="edge" />
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class
 				name="tricentis.demowebshopAutomation.tests.ProductSearchResultsPageTest" />
